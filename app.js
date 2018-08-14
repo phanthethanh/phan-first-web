@@ -7,24 +7,26 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var expresshbs  = require('express-handlebars');
-var mongodb = require('mongodb');
+//var mongodb = require('mongodb');
+//var MongoClient = require('mongodb').MongoClient;
 var mongooesdb = require('mongoose');
 var session = require('express-session');
-var MongoClient = require('mongodb').MongoClient;
   
 // Connection string URL
-var url_mongodb = 'mongodb://localhost:27017/shoes';
+var url_mongodb = 'mongodb://localhost:27017/shop';
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
 //connect setup
-MongoClient.connect(url_mongodb, function(err, database) {
+/*MongoClient.connect(url_mongodb, function(err, database) {
   if(err) throw err;
 });
+*/
 //mongodb.connect(url_mongodb);
-
+mongooesdb.connect(url_mongodb);
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
 app.engine('.hbs',expresshbs({defaultLayout:'layout',extname:'.hbs'}))
@@ -34,7 +36,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({secret:'phanthethanh84@gmail.com',resave:false,saveUninitialized:false}));
+app.use(session({secret:'phanthethanh84@gmail.com',resave:false, saveUninitialized:false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
@@ -57,3 +59,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
