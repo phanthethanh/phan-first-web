@@ -1,27 +1,28 @@
 <p>Welcome to {{title}}</p>
-{{# each productList}}
+{{# each products}}
     <div clas="row">
-        {{# each this}}
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
-                <img src="{{this.img}}">
-                <div class="caption">
-                    <h3>{{this.title}}</h3>          
+                <img src="{{this.img}}"" alt="..." class="img-reponsive">
+                <div class="caption">Caption: 
+                    {{this.title}}      
                     <p>
-                        <div class="description">
-                          <h3>{{this.description}}</h3>
-                           <h3>{{this.origin}}</h3>
+                        <div class="description">Description: 
+                            {{this.description}}
+                        </div>
+                        <div class="origin">Origin: 
+                             {{this.origin}}
                         </div>
                     </p>
-                <div class="clearfix">
-                        <div class="price">{{this.price}}</div>
+                    <div class="clearfix">
+                        <div class="price" style="color:blue">Price: <strong>{{this.price}}</strong></div>
                         <div>
-                            <a href="#" class="btn btn-success pull-right">Buy it</a>
+                            <a href="#" class="btn btn-success pull-right">
+                                <span class="glyphicon glyphicon-shopping-cart" style="font-size:18px"></span>Add to Cart</a>
                         </div>
-                </div>
+                    </div>
                 </div>
             </div>
         </div>
-        {{/each}}
     </div>  
 {{/each}}
